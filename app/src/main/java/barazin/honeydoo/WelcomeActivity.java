@@ -9,6 +9,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.parse.ParseUser;
+
 
 public class WelcomeActivity extends ActionBarActivity {
 
@@ -18,8 +20,22 @@ public class WelcomeActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_display_message);
+
+        Button actionButton = (Button) findViewById(R.id.logout);
+        actionButton.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View view){
+                logout();
+            }
+        });
     }
 
+    public void logout(){
+        ParseUser.logOut();
+        ParseUser currentUser = ParseUser.getCurrentUser(); // This will now be null
+        Intent intent = new Intent(WelcomeActivity.this, MainActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
+    }
     public void sendList(View view) {
 
         Intent intent = new Intent(this, ListActivity.class);

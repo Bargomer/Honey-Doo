@@ -17,7 +17,7 @@
 
     <EditText
         android:id="@+id/username"
-        android:text="Username"
+        android:hint="Username"
         android:gravity="right"
         android:layout_width="wrap_content"
         android:layout_centerHorizontal="true"
@@ -28,23 +28,46 @@
     <EditText
         android:id="@+id/password"
         android:padding="10dp"
-        android:text="password"
+        android:hint="password"
         android:gravity="right"
         android:layout_below="@+id/username"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" 
         android:layout_centerHorizontal="true"
         android:password="true"
+        android:imeActionId="@+id/edittext_action_login"
+        android:imeActionLabel="login"
+        android:imeOptions="actionUnspecified"
         />
 
     <Button
-        android:id="@+id/submit"
+        android:id="@+id/login"
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"
         android:layout_below="@+id/password"
         android:text="Submit"
         android:layout_centerHorizontal="true"
         android:onClick="sendMessage"
+        />
+
+    <TextView
+        android:id="@+id/orText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/login"
+        android:layout_centerHorizontal="true"
+        android:gravity="center"
+        android:layout_marginTop="2dp"
+        android:text="or"
+        />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/signUp"
+        android:layout_below="@+id/orText"
+        android:text="Signup"
+        android:layout_centerHorizontal="true"
         />
 
 </RelativeLayout>
