@@ -1,0 +1,72 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_margin="5dp"
+    android:layout_height="wrap_content">
+
+    tools:context="barazin.honeydoo.list_item">
+
+    <ImageView
+        android:id="@+id/listImage"
+        android:src="@drawable/honeybee"
+        android:layout_alignParentLeft="true"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:layout_width="80dp"
+        android:layout_height="80dp" />
+
+    <LinearLayout
+        android:layout_toRightOf="@id/listImage"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="5dp"
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/displayDescription"
+            android:text="List Item"
+            android:textSize="25sp"
+            android:textColor="#000"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/displayPoints"
+            android:text="100 points"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+
+    //Button for successfully accomplishing a task
+    <Button
+        android:id="@+id/honeyButton"
+        android:layout_centerVertical="true"
+        android:background="@drawable/honey"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="45dp"
+        android:textColor="#FFF"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:layout_width="40dp"
+        android:layout_height="40dp"/>
+
+    //Button for not accomplishing a task
+    <Button
+        android:id="@+id/dooButton"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:background="@drawable/doo"
+        android:textColor="#FFF"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:layout_width="40dp"
+        android:layout_height="40dp"/>
+
+
+</RelativeLayout>

@@ -13,6 +13,7 @@ import com.parse.ParseUser;
 public class WelcomeActivity extends ActionBarActivity {
 
     public final static String EXTRA_MESSAGE = "barazin.honeydoo.MESSAGE";
+
     
     @Override
     protected void onCreate(Bundle savedInstanceState) {

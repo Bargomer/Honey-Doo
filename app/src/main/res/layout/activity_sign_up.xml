@@ -4,6 +4,7 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
+    android:background="@color/amber"
     tools:context="barazin.honeydoo.SignUpActivity">
 
     <EditText
@@ -11,6 +12,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/userSignup"
         android:hint="Username"
+        android:singleLine="true"
         android:layout_centerHorizontal="true"
         />
 
@@ -20,6 +22,7 @@
         android:id="@+id/signupPass"
         android:hint="Password"
         android:layout_below="@+id/userSignup"
+        android:singleLine="true"
         android:layout_centerHorizontal="true"
         android:password="true"
         android:maxLines="1"
@@ -31,6 +34,7 @@
         android:id="@+id/reenterPass"
         android:hint="Re-enter Password"
         android:layout_below="@+id/signupPass"
+        android:singleLine="true"
         android:layout_centerHorizontal="true"
         android:password="true"
         android:maxLines="1"
@@ -46,6 +50,8 @@
         android:layout_below="@+id/reenterPass"
         android:text="Submit"
         android:layout_centerHorizontal="true"
+        android:background="@color/black"
+        android:textColor="@color/white"
         />
 
 </RelativeLayout>

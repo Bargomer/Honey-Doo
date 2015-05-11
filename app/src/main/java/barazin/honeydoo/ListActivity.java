@@ -4,20 +4,37 @@ import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
+
+import java.util.ArrayList;
 
 
 public class ListActivity extends ActionBarActivity {
 
+    private static ArrayList<List> lists = new ArrayList<List>(1);
+    private ListAdapter listAdapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list);
-        String [] names = {"One", "Two", "Three"};
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1, names);
-        ListView listView = (ListView)findViewById(R.id.list);
-        listView.setAdapter(adapter);
+
+        ListView listView = (ListView) findViewById(R.id.listView);
+        listAdapter = new ListAdapter(
+                this, lists);
+
+        listView.setAdapter(listAdapter);
+
+        Button add = (Button) findViewById(R.id.addButton);
+        add.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                lists.add(new List("List Name"));
+                listAdapter.notifyDataSetChanged();
+            }
+        });
     }
 
 

@@ -21,4 +21,9 @@
     <string name="error_end">.</string>
     <string name="progress_login">Logging you in&#8230;</string>
     <string name="progress_signup">Signing you up&#8230;</string>
+    <string name="title_activity_list_item">list_item</string>
+    <color name="amber">#ffc107</color>
+    <color name="black">#000000</color>
+    <color name="white">#FFFFFF</color>
+    <string name="title_activity_main_list">main_list</string>
 </resources>
