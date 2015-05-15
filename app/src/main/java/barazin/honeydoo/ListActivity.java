@@ -21,6 +21,7 @@ public class ListActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list);
 
+
         ListView listView = (ListView) findViewById(R.id.listView);
         listAdapter = new ListAdapter(
                 this, lists);

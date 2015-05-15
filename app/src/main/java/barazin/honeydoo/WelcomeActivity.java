@@ -6,20 +6,26 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.parse.ParseUser;
+
+import org.w3c.dom.Text;
 
 
 public class WelcomeActivity extends ActionBarActivity {
 
     public final static String EXTRA_MESSAGE = "barazin.honeydoo.MESSAGE";
-
+    private TextView textView;
     
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        String currentUser = ParseUser.getCurrentUser().getUsername();
         setContentView(R.layout.activity_display_message);
+        textView = (TextView)this.findViewById(R.id.insertName);
 
+        textView.setText(currentUser + "!");
         Button actionButton = (Button) findViewById(R.id.logout);
         actionButton.setOnClickListener(new View.OnClickListener(){
             public void onClick(View view){
