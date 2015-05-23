@@ -32,6 +32,7 @@ public class ListActivity extends ActionBarActivity {
         add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 lists.add(new List("List Name"));
                 listAdapter.notifyDataSetChanged();
             }

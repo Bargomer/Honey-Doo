@@ -48,7 +48,7 @@ public class HoneyListAdapter extends ArrayAdapter<HoneyList> {
         });
 
         //Button for not completing a task
-        Button dooButton = (Button) view.findViewById(R.id.honeyButton);
+        Button dooButton = (Button) view.findViewById(R.id.dooButton);
         dooButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
