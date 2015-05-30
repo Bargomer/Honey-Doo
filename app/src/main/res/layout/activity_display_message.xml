@@ -43,7 +43,7 @@
         />
 
     <Button
-        android:id="@+id/rewards"
+        android:id="@+id/rewardsButton"
         android:text="Rewards"
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"
@@ -59,10 +59,25 @@
         android:text="Logout"
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"
-        android:layout_below="@id/rewards"
+        android:layout_below="@id/rewardsButton"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp"
         android:background="@color/black"
         android:textColor="@color/white"
         />
+
+    <Button
+        android:id="@+id/findHoneyBtn"
+        android:text="Find Honey"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_below="@id/logout"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:background="@color/black"
+        android:textColor="@color/white"
+        />
+
+
+
 </RelativeLayout>

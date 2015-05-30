@@ -28,6 +28,7 @@ public class ListActivity extends ActionBarActivity {
 
         listView.setAdapter(listAdapter);
 
+        //add list to the listview
         Button add = (Button) findViewById(R.id.addButton);
         add.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -35,6 +36,19 @@ public class ListActivity extends ActionBarActivity {
 
                 lists.add(new List("List Name"));
                 listAdapter.notifyDataSetChanged();
+            }
+        });
+
+        //remove list from the listview
+        Button remove = (Button) findViewById(R.id.deleteButton);
+        remove.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                if (lists.size() >= 1) {
+                    lists.remove(lists.size() - 1);
+                    listAdapter.notifyDataSetChanged();
+                }
             }
         });
     }

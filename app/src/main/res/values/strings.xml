@@ -28,4 +28,7 @@
     <string name="title_activity_main_list">main_list</string>
     <string name="title_activity_inner_list">InnerList</string>
     <string name="title_activity_inner_list_adapter">InnerListAdapter</string>
+    <string name="title_activity_reward">RewardActivity</string>
+    <string name="title_activity_add_list">AddList</string>
+    <string name="title_activity_find_honey">FindHoney</string>
 </resources>

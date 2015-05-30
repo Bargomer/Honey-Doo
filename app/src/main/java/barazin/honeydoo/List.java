@@ -7,6 +7,7 @@ public class List {
 
     private String listName;
 
+    //constructor
     List(String listname) {
         this.listName = listname;
     }

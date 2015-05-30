@@ -3,6 +3,7 @@ package barazin.honeydoo;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.support.v7.app.ActionBarActivity;
 import android.view.View;
 import android.os.Bundle;
 import android.view.KeyEvent;
@@ -16,7 +17,7 @@ import com.parse.ParseException;
 import com.parse.ParseUser;
 import com.parse.SignUpCallback;
 
-public class SignUpActivity extends Activity {
+public class SignUpActivity extends ActionBarActivity {
     //UI references
     private EditText usernameEditText;
     private EditText passwordEditText;

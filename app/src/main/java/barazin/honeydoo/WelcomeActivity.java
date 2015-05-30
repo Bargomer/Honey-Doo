@@ -17,6 +17,7 @@ public class WelcomeActivity extends ActionBarActivity {
 
     public final static String EXTRA_MESSAGE = "barazin.honeydoo.MESSAGE";
     private TextView textView;
+    private Button tempButton;
     
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,12 +25,30 @@ public class WelcomeActivity extends ActionBarActivity {
         String currentUser = ParseUser.getCurrentUser().getUsername();
         setContentView(R.layout.activity_display_message);
         textView = (TextView)this.findViewById(R.id.insertName);
-
         textView.setText(currentUser + "!");
+
+        //reward button
+        Button rewardsBtn = (Button) findViewById(R.id.rewardsButton);
+        rewardsBtn.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                startActivity(new Intent(WelcomeActivity.this, RewardActivity.class));
+            }
+        });
+        //logout
         Button actionButton = (Button) findViewById(R.id.logout);
         actionButton.setOnClickListener(new View.OnClickListener(){
             public void onClick(View view){
                 logout();
+            }
+        });
+
+        tempButton = (Button)this.findViewById(R.id.findHoneyBtn);
+        //find a honey
+        Button honeyBtn = (Button) findViewById(R.id.findHoneyBtn);
+        honeyBtn.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                startActivity(new Intent(WelcomeActivity.this, FindHoney.class));
+                //tempButton.setVisibility(View.GONE);
             }
         });
     }
