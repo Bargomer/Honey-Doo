@@ -15,11 +15,15 @@ import android.widget.TextView;
 
 import com.parse.FindCallback;
 import com.parse.GetCallback;
+import com.parse.ParseACL;
 import com.parse.ParseException;
 import com.parse.ParseQuery;
 import com.parse.ParseObject;
+import com.parse.ParseUser;
+import com.parse.SaveCallback;
 
 import java.util.*;
+import java.util.List;
 
 
 public class FindHoney extends ActionBarActivity {
@@ -38,22 +42,30 @@ public class FindHoney extends ActionBarActivity {
         findBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String keyword = searchText.getText().toString();
-
-
+                final String keyword = searchText.getText().toString();
+                final ProgressDialog dialog = new ProgressDialog(FindHoney.this);
+                dialog.setMessage("Finding your honey!");
 
                 //
                 ParseQuery<ParseObject> query = ParseQuery.getQuery("User");
-                //query.whereEqualTo("username", "barazin");
-                query.getFirstInBackground(new GetCallback<ParseObject>() {
-                    public void done(ParseObject object, ParseException e) {
+                query.whereEqualTo("username", keyword);
+                dialog.show();
+                query.findInBackground(new FindCallback<ParseObject>()  {
+                    public void done(List<ParseObject> object, ParseException e) {
                         if (object == null) {
-                            Log.d("score", "Error: " + e.getMessage());
+                            dialog.setMessage("Your honey was not found :(!");
                         } else {
-                            final ProgressDialog dialog = new ProgressDialog(FindHoney.this);
-                            dialog.setMessage("Found your honey!");
-                            dialog.show();
+
+                            ParseUser.getCurrentUser().put("honey", keyword);
+                            ParseUser.getCurrentUser().saveInBackground();
+
+                            ParseObject temp = new ParseObject("Couple");
+                            temp.put("honey1", keyword);
+                            temp.put("honey2", ParseUser.getCurrentUser().getUsername().toString());
+                            temp.saveInBackground();
+
                         }
+                        //dialog.dismiss();
                     }
                 });
             }

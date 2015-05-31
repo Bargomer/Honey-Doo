@@ -1,16 +1,26 @@
 package barazin.honeydoo;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.parse.FindCallback;
+import com.parse.Parse;
+import com.parse.ParseObject;
+import com.parse.ParseQuery;
 import com.parse.ParseUser;
 
 import org.w3c.dom.Text;
+
+import java.text.ParseException;
+import java.util.*;
+import java.util.List;
 
 
 public class WelcomeActivity extends ActionBarActivity {
@@ -18,15 +28,39 @@ public class WelcomeActivity extends ActionBarActivity {
     public final static String EXTRA_MESSAGE = "barazin.honeydoo.MESSAGE";
     private TextView textView;
     private Button tempButton;
-    
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         String currentUser = ParseUser.getCurrentUser().getUsername();
         setContentView(R.layout.activity_display_message);
-        textView = (TextView)this.findViewById(R.id.insertName);
-        textView.setText(currentUser + ",");
 
+        textView = (TextView)this.findViewById(R.id.insertName);
+        textView.setText(currentUser + "!");
+
+        tempButton = (Button)this.findViewById(R.id.findHoneyBtn);
+
+        //if user has a honey, hide the find honey button
+        ParseQuery<ParseObject> check = new ParseQuery("Couple");
+        //check.whereEqualTo("honey1", ParseUser.getCurrentUser().getUsername().toString());
+        check.whereMatches("honey1", "barazin");
+        final ProgressDialog dialog = new ProgressDialog(WelcomeActivity.this);
+
+
+        check.findInBackground(new FindCallback<ParseObject>() {
+            @Override
+            public void done(List<ParseObject> object, com.parse.ParseException e) {
+
+                if (e == null) {
+                    tempButton.setVisibility(View.VISIBLE);
+
+                } else {
+                    dialog.setMessage(object.toString());
+                    dialog.show();
+                    tempButton.setVisibility(View.VISIBLE);
+                }
+            }
+        });
         //reward button
         Button rewardsBtn = (Button) findViewById(R.id.rewardsButton);
         rewardsBtn.setOnClickListener(new View.OnClickListener() {

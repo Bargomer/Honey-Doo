@@ -13,6 +13,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.parse.Parse;
 import com.parse.ParseException;
 import com.parse.ParseUser;
 import com.parse.SignUpCallback;
@@ -100,6 +101,7 @@ public class SignUpActivity extends ActionBarActivity {
         user.setUsername(username);
         user.setPassword(password);
 
+
         // Call the Parse signup method
         user.signUpInBackground(new SignUpCallback() {
             @Override
@@ -110,7 +112,7 @@ public class SignUpActivity extends ActionBarActivity {
                     Toast.makeText(SignUpActivity.this, e.getMessage(), Toast.LENGTH_LONG).show();
                 } else {
                     // Start an intent for the dispatch activity
-                    Intent intent = new Intent(SignUpActivity.this, ListActivity.class);
+                    Intent intent = new Intent(SignUpActivity.this, WelcomeActivity.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                     startActivity(intent);
                 }

@@ -3,6 +3,9 @@ package barazin.honeydoo;
 import android.app.Application;
 
 import com.parse.Parse;
+import com.parse.ParseACL;
+import com.parse.ParseObject;
+import com.parse.ParseUser;
 
 public class honeydoo extends Application {
 
@@ -14,19 +17,10 @@ public class honeydoo extends Application {
 
         Parse.initialize(this, "ekPAl3rcWOeXFSHBXAsbABVYSxDDiiEkUi6CFjjb", "FUrihUSMjrp1AdLyf3NdGP10xVimsVpxVFjB6NBc");
 
-        //THESE ARE THE FIRST LINES OF CODE TO RUN WHEN YOU START YOUR APP
-
-        // Enable Local Datastore.
-        //Parse.enableLocalDatastore(this);
-
-        //Parse.initialize(this, "ekPAl3rcWOeXFSHBXAsbABVYSxDDiiEkUi6CFjjb", "FUrihUSMjrp1AdLyf3NdGP10xVimsVpxVFjB6NBc");
+        ParseObject groupMessage = new ParseObject("Honey List");
+        ParseACL groupACL = new ParseACL();
 
 
-        //delete lines after this, for test purposes only
-        //ParseObject testObject = new ParseObject("TestObject");
-        //testObject.put("foo", "bar");
-        //testObject.saveInBackground();
     }
-
 
 }
