@@ -25,7 +25,7 @@ public class WelcomeActivity extends ActionBarActivity {
         String currentUser = ParseUser.getCurrentUser().getUsername();
         setContentView(R.layout.activity_display_message);
         textView = (TextView)this.findViewById(R.id.insertName);
-        textView.setText(currentUser + "!");
+        textView.setText(currentUser + ",");
 
         //reward button
         Button rewardsBtn = (Button) findViewById(R.id.rewardsButton);

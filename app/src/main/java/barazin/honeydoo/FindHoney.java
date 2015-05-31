@@ -1,27 +1,61 @@
 package barazin.honeydoo;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.TextView;
+
+import com.parse.FindCallback;
+import com.parse.GetCallback;
+import com.parse.ParseException;
+import com.parse.ParseQuery;
+import com.parse.ParseObject;
+
+import java.util.*;
 
 
 public class FindHoney extends ActionBarActivity {
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_find_honey);
 
+        final EditText searchText = (EditText) findViewById(R.id.findHoneyText);
+
         //find button searches the parse database
         Button findBtn = (Button) findViewById(R.id.findBtn);
         findBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
             public void onClick(View view) {
-                find();
-                //tempButton.setVisibility(View.GONE);
+                String keyword = searchText.getText().toString();
+
+
+
+                //
+                ParseQuery<ParseObject> query = ParseQuery.getQuery("User");
+                //query.whereEqualTo("username", "barazin");
+                query.getFirstInBackground(new GetCallback<ParseObject>() {
+                    public void done(ParseObject object, ParseException e) {
+                        if (object == null) {
+                            Log.d("score", "Error: " + e.getMessage());
+                        } else {
+                            final ProgressDialog dialog = new ProgressDialog(FindHoney.this);
+                            dialog.setMessage("Found your honey!");
+                            dialog.show();
+                        }
+                    }
+                });
             }
         });
     }
