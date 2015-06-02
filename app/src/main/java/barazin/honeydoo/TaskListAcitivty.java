@@ -10,8 +10,14 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.parse.FindCallback;
 import com.parse.ParseObject;
+import com.parse.ParseQuery;
 import com.parse.ParseUser;
+import com.parse.ParseException;
+
+
+import java.util.List;
 
 
 public class TaskListAcitivty extends ActionBarActivity {
@@ -33,17 +39,38 @@ public class TaskListAcitivty extends ActionBarActivity {
                 int honeyPoints = Integer.parseInt(honeyPointText.getText().toString());
                 int dooPoints = Integer.parseInt(dooPointText.getText().toString());
 
-                ParseObject temp = new ParseObject("Couple");
-                temp.put("taskId", taskTitle);
+                ParseQuery<ParseObject> query = ParseQuery.getQuery("HoneyList");
+                query.whereEqualTo("listId", getIntent().getStringExtra("id"));
+                //query.whereEqualTo("taskId", null);
+                query.findInBackground(new FindCallback<ParseObject>() {
+                    public void done(List<ParseObject> invites, ParseException e) {
+                        if (e == null) {
+                            // iterate over all messages and delete them
+                            for (ParseObject invite : invites) {
+                                invite.deleteInBackground();
+                            }
+                        } else {
+                            //Handle condition here
+                        }
+                    }
+                });
+
+                ParseObject temp = ParseObject.create("HoneyList");
+                temp.put("listId",getIntent().getStringExtra("id"));
+                temp.put("taskId", taskTitle.getText().toString());
                 temp.put("honeyPoints", honeyPoints);
                 temp.put("dooPoints", dooPoints);
-                temp.put("description", descriptionText);
+                temp.put("description", descriptionText.getText().toString());
                 temp.put("honey", ParseUser.getCurrentUser().getUsername().toString());
                 temp.saveInBackground();
+
+
                 //TextView despText = (TextView) findViewById(R.id.despText);
                 //return the list name back to other activity
                 //
-                //startActivity(new Intent(AddList.this, ListActivity.class));
+                Intent intent = new Intent(TaskListAcitivty.this, Task.class);
+                intent.putExtra("id", getIntent().getStringExtra("id"));
+                startActivity(intent);
             }
         });
 

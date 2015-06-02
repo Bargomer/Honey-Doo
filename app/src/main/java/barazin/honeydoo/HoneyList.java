@@ -11,6 +11,21 @@ import com.parse.ParseObject;
 public class HoneyList extends ParseObject {
 
     private String objectId;
+    private int taskIcon = R.drawable.honeybee;
+    private int honeyIcon = R.drawable.honey;
+    private int dooIcon = R.drawable.doo;
+
+
+
+    public String getListId() {
+        return getString("listId");
+    }
+
+    public void setListId(String listId) {
+        put("listId", listId);
+    }
+
+    private String listId;
 
     public int getTaskIcon() {
         return taskIcon;
@@ -23,10 +38,6 @@ public class HoneyList extends ParseObject {
     public int getDooIcon() {
         return dooIcon;
     }
-
-    private int taskIcon = R.drawable.honeybee;
-    private int honeyIcon = R.drawable.honey;
-    private int dooIcon = R.drawable.doo;
 
     @Override
     public void setObjectId(String objectId) {

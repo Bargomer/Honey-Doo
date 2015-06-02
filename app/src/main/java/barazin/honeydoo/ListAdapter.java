@@ -18,12 +18,12 @@ import junit.runner.Version;
 
 import java.util.ArrayList;
 
-public class ListAdapter extends ArrayAdapter<List> {
+public class ListAdapter extends ArrayAdapter<HoneyList> {
 
     private Context context;
-    private java.util.List<List> list;
+    private java.util.List<HoneyList> list;
 
-    public ListAdapter(Context context, java.util.List<List> list) {
+    public ListAdapter(Context context, java.util.List<HoneyList> list) {
         super(context, R.layout.activity_main_list, list);
         this.context = context;
         this.list = list;
@@ -34,7 +34,7 @@ public class ListAdapter extends ArrayAdapter<List> {
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View view = inflater.inflate(R.layout.activity_main_list, parent, false);
         TextView textView = (TextView) view.findViewById(R.id.listName);
-        textView.setText(list.get(position).getListName());
+        textView.setText(list.get(position).getListId());
 
         return view;
     }

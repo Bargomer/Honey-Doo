@@ -35,6 +35,7 @@ public class AddList extends ActionBarActivity {
                 EditText listName = (EditText) findViewById(R.id.listNameEdit);
                 ParseObject temp = ParseObject.create("HoneyList");
                 temp.put("listId", listName.getText().toString());
+                temp.put("honey", ParseUser.getCurrentUser().getUsername().toString());
                 temp.saveInBackground(new SaveCallback() {
                     public void done(ParseException e) {
                         if (e == null) {

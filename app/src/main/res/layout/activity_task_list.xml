@@ -24,7 +24,7 @@
         android:layout_height="wrap_content" />
     <EditText
         android:id="@+id/dooPointsEdit"
-        android:hint="Value: Honey Points"
+        android:hint="Value: Doo Points"
         android:textColor="@color/black"
         android:layout_below="@+id/honeyPointsEdit"
         android:inputType="number"
@@ -33,7 +33,7 @@
 
     <EditText
         android:id="@+id/taskDescription"
-        android:hint="Value: Honey Points"
+        android:hint="Description of Task"
         android:textColor="@color/black"
         android:layout_below="@+id/dooPointsEdit"
         android:layout_width="match_parent"

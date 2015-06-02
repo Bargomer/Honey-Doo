@@ -1,5 +1,6 @@
 package barazin.honeydoo;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
@@ -15,6 +16,7 @@ import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
+import com.parse.ParseUser;
 
 import java.util.ArrayList;
 
@@ -25,7 +27,7 @@ public class Task extends ActionBarActivity {
     ListView listView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        ParseObject.registerSubclass(List.class);
+        //ParseObject.registerSubclass(List.class);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_task);
 
@@ -49,7 +51,9 @@ public class Task extends ActionBarActivity {
 
 
                 //go to new view to make a list
-                startActivity(new Intent(Task.this, TaskListAcitivty.class));
+                Intent intent = new Intent(Task.this, TaskListAcitivty.class);
+                intent.putExtra("id", getIntent().getStringExtra("id"));
+                startActivity(intent);
             }
         });
 
@@ -73,7 +77,7 @@ public class Task extends ActionBarActivity {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Intent intent = new Intent(Task.this, Task.class);
                 HoneyList project = listAdapter.getItem(i);
-                intent.putExtra("id", project.getTaskId());
+                intent.putExtra("id", getIntent().getStringExtra("id"));
                 startActivity(intent);
             }
         });
@@ -83,6 +87,11 @@ public class Task extends ActionBarActivity {
 
     private void syncList() {
         ParseQuery<HoneyList> query = ParseQuery.getQuery(HoneyList.class);
+        query.whereEqualTo("listId", getIntent().getStringExtra("id"));
+        query.whereEqualTo("honey", ParseUser.getCurrentUser().getUsername().toString());
+        final ProgressDialog dialog = new ProgressDialog(Task.this);
+        dialog.setMessage("Retrieving Task!");
+        dialog.show();
         query.findInBackground(new FindCallback<HoneyList>() {
             @Override
             public void done(java.util.List<HoneyList> list, ParseException e) {
@@ -90,6 +99,7 @@ public class Task extends ActionBarActivity {
                 listView.setAdapter(listAdapter);
             }
         });
+        dialog.dismiss();
     }
 
     @Override

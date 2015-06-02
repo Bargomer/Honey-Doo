@@ -61,7 +61,6 @@ public class HoneyListAdapter extends ArrayAdapter<HoneyList> {
             }
         });
 
-
-        return view;
+            return view;
     }
 }
