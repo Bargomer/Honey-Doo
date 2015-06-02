@@ -7,25 +7,27 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 
+import java.util.ArrayList;
 
-public class ListActivity extends ActionBarActivity {
 
-    ListAdapter listAdapter;
+public class Task extends ActionBarActivity {
+
+    HoneyListAdapter listAdapter;
     ListView listView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         ParseObject.registerSubclass(List.class);
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_list);
+        setContentView(R.layout.activity_task);
 
 
 //        ;
@@ -40,14 +42,14 @@ public class ListActivity extends ActionBarActivity {
 //        listView.setAdapter(listAdapter);
 
         //add list to the listview
-        Button add = (Button) findViewById(R.id.addButton);
+        Button add = (Button) findViewById(R.id.addTaskBtn);
         add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
 
                 //go to new view to make a list
-                startActivity(new Intent(ListActivity.this, AddList.class));
+                startActivity(new Intent(Task.this, TaskListAcitivty.class));
             }
         });
 
@@ -65,13 +67,13 @@ public class ListActivity extends ActionBarActivity {
 //        });
 
         //take user to list
-        listView = (ListView) findViewById(R.id.listView);
+        listView = (ListView) findViewById(R.id.taskListView);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Intent intent = new Intent(ListActivity.this, Task.class);
-                List project = listAdapter.getItem(i);
-                intent.putExtra("id", project.getListName());
+                Intent intent = new Intent(Task.this, Task.class);
+                HoneyList project = listAdapter.getItem(i);
+                intent.putExtra("id", project.getTaskId());
                 startActivity(intent);
             }
         });
@@ -80,11 +82,11 @@ public class ListActivity extends ActionBarActivity {
     }
 
     private void syncList() {
-        ParseQuery<List> query = ParseQuery.getQuery(List.class);
-        query.findInBackground(new FindCallback<List>() {
+        ParseQuery<HoneyList> query = ParseQuery.getQuery(HoneyList.class);
+        query.findInBackground(new FindCallback<HoneyList>() {
             @Override
-            public void done(java.util.List<List> list, ParseException e) {
-                listAdapter = new ListAdapter(ListActivity.this, list);
+            public void done(java.util.List<HoneyList> list, ParseException e) {
+                listAdapter = new HoneyListAdapter(Task.this, list);
                 listView.setAdapter(listAdapter);
             }
         });
@@ -93,7 +95,7 @@ public class ListActivity extends ActionBarActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_list, menu);
+        getMenuInflater().inflate(R.menu.menu_task, menu);
         return true;
     }
 

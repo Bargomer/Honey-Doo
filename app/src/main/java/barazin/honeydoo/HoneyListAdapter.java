@@ -12,14 +12,15 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import java.util.ArrayList;
+import java.util.*;
+import java.util.List;
 
 public class HoneyListAdapter extends ArrayAdapter<HoneyList> {
 
     private Context context;
-    private ArrayList<HoneyList> honeyLists;
+    private List<HoneyList> honeyLists;
 
-    public HoneyListAdapter(Context context, ArrayList<HoneyList> honeyLists) {
+    public HoneyListAdapter(Context context, java.util.List<HoneyList> honeyLists) {
         super(context, R.layout.activity_list_item, honeyLists);
         this.context = context;
         this.honeyLists = honeyLists;
@@ -29,14 +30,18 @@ public class HoneyListAdapter extends ArrayAdapter<HoneyList> {
     public View getView(final int position, View convertView, ViewGroup parent) {
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View view = inflater.inflate(R.layout.activity_list_item, parent, false);
-        ImageView imageView = (ImageView) view.findViewById(R.id.listImage);
-        imageView.setImageResource(honeyLists.get(position).getPhoto());
+
+//        //for task icon
+//        ImageView taskImageView = (ImageView) view.findViewById(R.dra);
+//        taskImageView.setImageResource(honeyLists.get(position).getHoneyIcon());
+
+
+
+        TextView honeyPoints = (TextView) view.findViewById(R.id.displayPoints);
+        honeyPoints.setText(honeyLists.get(position).getHoneyPoints() + " points");
 
         TextView displayDescription = (TextView) view.findViewById(R.id.displayDescription);
         displayDescription.setText(honeyLists.get(position).getDescription());
-
-        TextView honeyPoints = (TextView) view.findViewById(R.id.displayPoints);
-        honeyPoints.setText(honeyLists.get(position).getPoints() + " points");
 
         //Button for completing a task
         Button honeyButton = (Button) view.findViewById(R.id.honeyButton);

@@ -8,28 +8,28 @@
     tools:context="barazin.honeydoo.ListActivity">
 
     <Button
+        android:id="@+id/addButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:text="ADD"
-        android:id="@+id/addButton"
         android:layout_centerHorizontal="true"
         android:gravity="center"
-        android:background="@color/black"
+        android:background="@drawable/custom_button"
         android:textColor="@color/white"/>
 
      <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:text="DELETE"
-        android:id="@+id/deleteButton"
-        android:layout_toRightOf="@+id/addButton"
-        android:layout_marginLeft="5dp"
-        android:layout_centerHorizontal="true"
-        android:gravity="center"
-        android:background="@color/black"
-        android:textColor="@color/white"/>
+         android:id="@+id/deleteButton"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_alignParentRight="true"
+         android:text="DELETE"
+         android:layout_toRightOf="@+id/addButton"
+         android:layout_marginLeft="5dp"
+         android:layout_centerHorizontal="true"
+         android:gravity="center"
+         android:background="@drawable/custom_button"
+         android:textColor="@color/white"/>
 
     <ListView
         android:id="@+id/listView"

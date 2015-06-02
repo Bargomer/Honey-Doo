@@ -1,60 +1,80 @@
 package barazin.honeydoo;
 
+import com.parse.ParseClassName;
+import com.parse.ParseFile;
+import com.parse.ParseObject;
+
 /**
- * Created by Jose on 5/10/2015.
+ * Created by Jose on 6/23/15.
  */
-public class HoneyList {
+@ParseClassName("HoneyList")
+public class HoneyList extends ParseObject {
 
-    private Object user;
-    private String description;
-    private int points;
-    private int photo;
-    private static int totalHoneyPoints = 0; // Accumulates the total amount of points for the list
+    private String objectId;
 
-    // Constructor
-    public HoneyList(String description, int points,int photo){
-        this.description = description;
-        this.points = points;
-        this.photo = photo;
+    public int getTaskIcon() {
+        return taskIcon;
     }
 
-    public Object getName(){
-        return user;
+    public int getHoneyIcon() {
+        return honeyIcon;
     }
 
-    public void setName(Object user){
-        this.user = user;
+    public int getDooIcon() {
+        return dooIcon;
     }
 
-    public String getDescription(){
-        return description;
+    private int taskIcon = R.drawable.honeybee;
+    private int honeyIcon = R.drawable.honey;
+    private int dooIcon = R.drawable.doo;
+
+    @Override
+    public void setObjectId(String objectId) {
+        put("objectId", objectId);
     }
 
-    public void setDescription(String item){
-        this.description = description;
+    public String getTaskId() {
+        return getString("objectId");
     }
 
-    public int getPoints(){
-        return points;
+    public void setTaskId(String taskId) {
+        put("taskId", taskId);
     }
 
-    public void setPoints(int points){
-        this.points = points;
+    public String getDescription() {
+        return getString("description");
     }
 
-    public int getPhoto() {
-        return photo;
+    public String getHoney() {
+        return getString("honey");
     }
 
-    public void setPhoto(int photo) {
-        this.photo = photo;
+    public void setHoney(String honey) {
+        put("honey", honey);
     }
 
-    public int getTotalHoneyPoints(){
-        return totalHoneyPoints;
+    public String getSucka() {
+        return getString("sucka");
     }
 
-    public void setTotalHoneyPoints(int totalHoneyPoints){
-        this.totalHoneyPoints = totalHoneyPoints;
+    public void setSucka(String sucka) {
+        put("sucka", sucka);
     }
+
+    public int getHoneyPoints() {
+        return getInt("honeyPoints");
+    }
+
+    public void setHoneyPoints(int honeyPoints) {
+        put("honeyPoints", honeyPoints);
+    }
+
+    public int getDooPoints() {
+        return getInt("dooPoints");
+    }
+
+    public void setDooPoints(int dooPoints) {
+        put("dooPoints", dooPoints);
+    }
+
 }

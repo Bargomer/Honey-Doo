@@ -46,26 +46,30 @@ public class FindHoney extends ActionBarActivity {
                 final ProgressDialog dialog = new ProgressDialog(FindHoney.this);
                 dialog.setMessage("Finding your honey!");
 
-                //
-                ParseQuery<ParseObject> query = ParseQuery.getQuery("User");
+                ParseQuery<ParseObject> query = ParseQuery.getQuery("_User");
                 query.whereEqualTo("username", keyword);
                 dialog.show();
+
+                //find if honey exist in background
                 query.findInBackground(new FindCallback<ParseObject>()  {
                     public void done(List<ParseObject> object, ParseException e) {
-                        if (object == null) {
-                            dialog.setMessage("Your honey was not found :(!");
-                        } else {
 
-                            ParseUser.getCurrentUser().put("honey", keyword);
-                            ParseUser.getCurrentUser().saveInBackground();
+                        //honey doesn't exist. infrom user
+                        if(object.size() == 0){
+                            dialog.setMessage("Your honey was not found :( !");
+                            dialog.show();
+                        }
+
+                        //no exception thrown, honey exist!
+                         else if (e == null) {
 
                             ParseObject temp = new ParseObject("Couple");
                             temp.put("honey1", keyword);
                             temp.put("honey2", ParseUser.getCurrentUser().getUsername().toString());
                             temp.saveInBackground();
-
                         }
-                        //dialog.dismiss();
+                        //get rid of the dialog box
+                        dialog.dismiss();
                     }
                 });
             }

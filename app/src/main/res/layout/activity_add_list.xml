@@ -14,10 +14,19 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
     <EditText
-        android:id="@+id/ListNameEdit"
-        android:text="List name"
-        android:hint="true"
+        android:id="@+id/listNameEdit"
+        android:hint="Insert list name"
+        android:textColor="@color/black"
         android:layout_below="@+id/ListNameTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:id="@+id/submitListName"
+        android:layout_below="@+id/listNameEdit"
+        android:text="Submit"
+        android:textColor="@color/white"
+        android:background="@drawable/custom_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 

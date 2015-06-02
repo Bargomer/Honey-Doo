@@ -7,7 +7,7 @@
     tools:context="barazin.honeydoo.list_item">
 
     <ImageView
-        android:id="@+id/listImage"
+        android:id="@+id/taskImage"
         android:src="@drawable/honeybee"
         android:layout_alignParentLeft="true"
         android:paddingTop="5dp"
@@ -16,7 +16,7 @@
         android:layout_height="80dp" />
 
     <LinearLayout
-        android:layout_toRightOf="@id/listImage"
+        android:layout_toRightOf="@id/taskImage"
         android:layout_centerVertical="true"
         android:layout_marginLeft="5dp"
         android:orientation="vertical"

@@ -1,22 +1,24 @@
 package barazin.honeydoo;
 
+import com.parse.ParseClassName;
+import com.parse.ParseFile;
+import com.parse.ParseObject;
+
 /**
- * Created by Timadeus on 5/10/2015.
+ * Created by Jose on 6/23/15.
  */
-public class List {
+@ParseClassName("List")
+
+public class List extends ParseObject {
 
     private String listName;
 
-    //constructor
-    List(String listname) {
-        this.listName = listname;
-    }
-
     public String getListName() {
-        return listName;
+
+        return getString("listId");
     }
 
     public void setListName(String listName) {
-        this.listName = listName;
+        put("listId", listName);
     }
 }

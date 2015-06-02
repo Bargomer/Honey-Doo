@@ -17,7 +17,7 @@
     <Button
         android:id="@+id/findBtn"
         android:text="Find"
-        android:background="@color/black"
+        android:background="@drawable/custom_button"
         android:textColor="@color/white"
         android:layout_below="@id/findHoneyText"
         android:layout_width="match_parent"

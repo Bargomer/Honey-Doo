@@ -80,6 +80,22 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="barazin.honeydoo.WelcomeActivity" />
         </activity>
+        <activity
+            android:name=".Task"
+            android:label="@string/title_activity_task"
+            android:parentActivityName=".ListActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="barazin.honeydoo.ListActivity" />
+        </activity>
+        <activity
+            android:name=".TaskListAcitivty"
+            android:label="@string/title_activity_task_list_acitivty"
+            android:parentActivityName=".AddList" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="barazin.honeydoo.AddList" />
+        </activity>
     </application>
 
 </manifest>

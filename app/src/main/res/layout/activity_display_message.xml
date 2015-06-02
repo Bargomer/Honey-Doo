@@ -38,7 +38,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="40dp"
         android:onClick="sendList"
-        android:background="@color/black"
+        android:background="@drawable/custom_button"
         android:textColor="@color/white"
         />
 
@@ -50,7 +50,7 @@
         android:layout_below="@id/list"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp"
-        android:background="@color/black"
+        android:background="@drawable/custom_button"
         android:textColor="@color/white"
         />
 
@@ -62,7 +62,7 @@
         android:layout_below="@id/rewardsButton"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp"
-        android:background="@color/black"
+        android:background="@drawable/custom_button"
         android:textColor="@color/white"
         />
 
@@ -74,7 +74,7 @@
         android:layout_below="@id/logout"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp"
-        android:background="@color/black"
+        android:background="@drawable/custom_button"
         android:textColor="@color/white"
         android:visibility="gone"
         />

@@ -1,10 +1,8 @@
 package barazin.honeydoo;
 
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -12,54 +10,49 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.parse.ParseClassName;
-import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseUser;
-import com.parse.SaveCallback;
 
-public class AddList extends ActionBarActivity {
 
+public class TaskListAcitivty extends ActionBarActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_list);
+        setContentView(R.layout.activity_task_list);
 
-        Button submit = (Button) findViewById(R.id.submitListName);
+        Button submit = (Button) findViewById(R.id.taskSubmitBtn);
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                Intent intent = new Intent(AddList.this, ListActivity.class);
-                EditText listName = (EditText) findViewById(R.id.listNameEdit);
-                ParseObject temp = ParseObject.create("HoneyList");
-                temp.put("listId", listName.getText().toString());
-                temp.saveInBackground(new SaveCallback() {
-                    public void done(ParseException e) {
-                        if (e == null) {
-                            //myObjectSavedSuccessfully();
-                            //System.out.println("EXCELENT");
+                EditText taskTitle = (EditText) findViewById(R.id.taskTitleEdit);
+                EditText honeyPointText = (EditText) findViewById(R.id.honeyPointsEdit);
+                EditText dooPointText = (EditText) findViewById(R.id.dooPointsEdit);
+                EditText descriptionText = (EditText) findViewById(R.id.taskDescription);
+                int honeyPoints = Integer.parseInt(honeyPointText.getText().toString());
+                int dooPoints = Integer.parseInt(dooPointText.getText().toString());
 
-                        } else {
-                            //myObjectSaveDidNotSucceed();
-                            Log.i("ERRRRORR: ", e.getMessage());
-                        }
-                    }
-                });
-
-                startActivity(intent);
+                ParseObject temp = new ParseObject("Couple");
+                temp.put("taskId", taskTitle);
+                temp.put("honeyPoints", honeyPoints);
+                temp.put("dooPoints", dooPoints);
+                temp.put("description", descriptionText);
+                temp.put("honey", ParseUser.getCurrentUser().getUsername().toString());
+                temp.saveInBackground();
+                //TextView despText = (TextView) findViewById(R.id.despText);
                 //return the list name back to other activity
                 //
                 //startActivity(new Intent(AddList.this, ListActivity.class));
             }
         });
+
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_add_list, menu);
+        getMenuInflater().inflate(R.menu.menu_task_list_acitivty, menu);
         return true;
     }
 

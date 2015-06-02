@@ -12,14 +12,18 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.parse.ParseObject;
+
+import junit.runner.Version;
+
 import java.util.ArrayList;
 
 public class ListAdapter extends ArrayAdapter<List> {
 
     private Context context;
-    private ArrayList<List> list;
+    private java.util.List<List> list;
 
-    public ListAdapter(Context context, ArrayList<List> list) {
+    public ListAdapter(Context context, java.util.List<List> list) {
         super(context, R.layout.activity_main_list, list);
         this.context = context;
         this.list = list;

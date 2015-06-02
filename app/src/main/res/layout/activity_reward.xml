@@ -8,5 +8,27 @@
     tools:context="barazin.honeydoo.RewardActivity">
 
 
+    <Button
+        android:id="@+id/addReward"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:text="ADD"
+        android:layout_centerHorizontal="true"
+        android:gravity="center"
+        android:background="@drawable/custom_button"
+        android:textColor="@color/white"/>
 
+    <Button
+        android:id="@+id/deleteReward"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:text="DELETE"
+        android:layout_toRightOf="@+id/addReward"
+        android:layout_marginLeft="5dp"
+        android:layout_centerHorizontal="true"
+        android:gravity="center"
+        android:background="@drawable/custom_button"
+        android:textColor="@color/white"/>
 </RelativeLayout>

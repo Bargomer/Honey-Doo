@@ -43,7 +43,7 @@ public class WelcomeActivity extends ActionBarActivity {
         //if user has a honey, hide the find honey button
         ParseQuery<ParseObject> check = new ParseQuery("Couple");
         //check.whereEqualTo("honey1", ParseUser.getCurrentUser().getUsername().toString());
-        check.whereMatches("honey1", "barazin");
+        check.whereMatches("honey2", ParseUser.getCurrentUser().getUsername().toString());
         final ProgressDialog dialog = new ProgressDialog(WelcomeActivity.this);
 
 
@@ -51,13 +51,11 @@ public class WelcomeActivity extends ActionBarActivity {
             @Override
             public void done(List<ParseObject> object, com.parse.ParseException e) {
 
-                if (e == null) {
+                if (object.size() == 0) {
                     tempButton.setVisibility(View.VISIBLE);
+                } else if (e == null) {
+                    tempButton.setVisibility(View.GONE);
 
-                } else {
-                    dialog.setMessage(object.toString());
-                    dialog.show();
-                    tempButton.setVisibility(View.VISIBLE);
                 }
             }
         });
