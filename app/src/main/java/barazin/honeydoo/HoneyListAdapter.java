@@ -41,7 +41,7 @@ public class HoneyListAdapter extends ArrayAdapter<HoneyList> {
         honeyPoints.setText(honeyLists.get(position).getHoneyPoints() + " points");
 
         TextView displayDescription = (TextView) view.findViewById(R.id.displayDescription);
-        displayDescription.setText(honeyLists.get(position).getDescription());
+        displayDescription.setText(honeyLists.get(position).getTaskId());
 
         //Button for completing a task
         Button honeyButton = (Button) view.findViewById(R.id.honeyButton);

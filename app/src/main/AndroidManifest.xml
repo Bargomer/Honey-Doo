@@ -45,24 +45,12 @@
                 android:value="barazin.honeydoo.MainActivity" />
         </activity>
         <activity
-            android:name=".list_item"
-            android:label="@string/title_activity_list_item" >
-        </activity>
-        <activity
-            android:name=".InnerList"
-            android:label="@string/title_activity_inner_list"
-            android:parentActivityName=".ListActivity" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="barazin.honeydoo.ListActivity" />
-        </activity>
-        <activity
             android:name=".RewardActivity"
             android:label="@string/title_activity_reward"
-            android:parentActivityName=".WelcomeActivity" >
+            android:parentActivityName=".RewardListActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="barazin.honeydoo.WelcomeActivity" />
+                android:value="barazin.honeydoo.RewardListActivity" />
         </activity>
         <activity
             android:name=".AddList"
@@ -94,7 +82,31 @@
             android:parentActivityName=".AddList" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="barazin.honeydoo.AddList" />
+                android:value="barazin.honeydoo.Task" />
+        </activity>
+        <activity
+            android:name=".RewardListActivity"
+            android:label="@string/title_activity_reward_list"
+            android:parentActivityName=".WelcomeActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="barazin.honeydoo.RewardActivity" />
+        </activity>
+        <activity
+            android:name=".RewardDescription"
+            android:label="@string/title_activity_reward_description"
+            android:parentActivityName=".RewardListActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="barazin.honeydoo.RewardListActivity" />
+        </activity>
+        <activity
+            android:name=".TaskDescription"
+            android:label="@string/title_activity_task_description"
+            android:parentActivityName=".Task" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="barazin.honeydoo.Task" />
         </activity>
     </application>
 

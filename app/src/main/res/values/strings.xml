@@ -33,4 +33,8 @@
     <string name="title_activity_find_honey">FindHoney</string>
     <string name="title_activity_task">Task</string>
     <string name="title_activity_task_list_acitivty">TaskListAcitivty</string>
+    <string name="title_activity_reward_list">RewardListActivity</string>
+    <string name="title_activity_description">DescriptionActivity</string>
+    <string name="title_activity_reward_description">RewardDescription</string>
+    <string name="title_activity_task_description">TaskDescription</string>
 </resources>

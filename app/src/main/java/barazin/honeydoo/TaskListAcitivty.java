@@ -41,7 +41,8 @@ public class TaskListAcitivty extends ActionBarActivity {
 
                 ParseQuery<ParseObject> query = ParseQuery.getQuery("HoneyList");
                 query.whereEqualTo("listId", getIntent().getStringExtra("id"));
-                //query.whereEqualTo("taskId", null);
+                query.whereEqualTo("taskId", null);
+                query.whereNotEqualTo("sucka", "temp");
                 query.findInBackground(new FindCallback<ParseObject>() {
                     public void done(List<ParseObject> invites, ParseException e) {
                         if (e == null) {

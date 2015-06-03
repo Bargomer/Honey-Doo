@@ -63,7 +63,7 @@ public class WelcomeActivity extends ActionBarActivity {
         Button rewardsBtn = (Button) findViewById(R.id.rewardsButton);
         rewardsBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-                startActivity(new Intent(WelcomeActivity.this, RewardActivity.class));
+                startActivity(new Intent(WelcomeActivity.this, RewardListActivity.class));
             }
         });
         //logout

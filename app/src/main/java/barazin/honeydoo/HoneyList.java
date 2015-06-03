@@ -14,6 +14,25 @@ public class HoneyList extends ParseObject {
     private int taskIcon = R.drawable.honeybee;
     private int honeyIcon = R.drawable.honey;
     private int dooIcon = R.drawable.doo;
+    private String rewards;
+
+    public String getRewardDescription() {
+        return getString("rewardDescription");
+    }
+
+    public void setRewardDescription(String rewardDescription) {
+        put("rewardDescription", rewardDescription);
+    }
+
+    public String getRewards() {
+        return getString("rewards");
+    }
+
+    public void setRewards(String rewards) {
+        put("rewards", rewards);
+    }
+
+    private String rewardDescription;
 
 
 
@@ -45,7 +64,7 @@ public class HoneyList extends ParseObject {
     }
 
     public String getTaskId() {
-        return getString("objectId");
+        return getString("taskId");
     }
 
     public void setTaskId(String taskId) {

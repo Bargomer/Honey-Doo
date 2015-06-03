@@ -75,9 +75,9 @@ public class Task extends ActionBarActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Intent intent = new Intent(Task.this, Task.class);
+                Intent intent = new Intent(Task.this, TaskDescription.class);
                 HoneyList project = listAdapter.getItem(i);
-                intent.putExtra("id", getIntent().getStringExtra("id"));
+                intent.putExtra("taskDesc", project.getTaskId());
                 startActivity(intent);
             }
         });
@@ -89,6 +89,7 @@ public class Task extends ActionBarActivity {
         ParseQuery<HoneyList> query = ParseQuery.getQuery(HoneyList.class);
         query.whereEqualTo("listId", getIntent().getStringExtra("id"));
         query.whereEqualTo("honey", ParseUser.getCurrentUser().getUsername().toString());
+        query.whereNotEqualTo("taskId", null);
         final ProgressDialog dialog = new ProgressDialog(Task.this);
         dialog.setMessage("Retrieving Task!");
         dialog.show();

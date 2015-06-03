@@ -8,7 +8,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 
@@ -19,9 +18,9 @@ import com.parse.ParseQuery;
 import com.parse.ParseUser;
 
 
-public class ListActivity extends ActionBarActivity {
+public class RewardListActivity extends ActionBarActivity {
 
-    ListAdapter listAdapter;
+    RewardAdapter listAdapter;
     ListView listView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,27 +28,14 @@ public class ListActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list);
 
-
-//        ;
-//        listAdapter = new ListAdapter(
-//                ListActivity.this, lists);
-
-//        if (getIntent().getStringExtra("Title") != null)
-//        lists.add(new List(getIntent().getExtras().getString("Title")));
-//        listAdapter.notifyDataSetChanged();
-
-//
-//        listView.setAdapter(listAdapter);
-
         //add list to the listview
         Button add = (Button) findViewById(R.id.addButton);
         add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-
                 //go to new view to make a list
-                startActivity(new Intent(ListActivity.this, AddList.class));
+                startActivity(new Intent(RewardListActivity.this, RewardActivity.class));
             }
         });
 
@@ -71,9 +57,9 @@ public class ListActivity extends ActionBarActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Intent intent = new Intent(ListActivity.this, Task.class);
+                Intent intent = new Intent(RewardListActivity.this, RewardDescription.class);
                 HoneyList project = listAdapter.getItem(i);
-                intent.putExtra("id", project.getListId());
+                intent.putExtra("rewardId", project.getRewards());
                 startActivity(intent);
             }
         });
@@ -84,15 +70,14 @@ public class ListActivity extends ActionBarActivity {
     private void syncList() {
         ParseQuery<HoneyList> query = ParseQuery.getQuery(HoneyList.class);
         query.whereEqualTo("honey", ParseUser.getCurrentUser().getUsername().toString());
-        query.whereNotEqualTo("listId", null);
-        query.whereEqualTo("sucka", "temp");
-        final ProgressDialog dialog = new ProgressDialog(ListActivity.this);
+        query.whereNotEqualTo("rewards", null);
+        final ProgressDialog dialog = new ProgressDialog(RewardListActivity.this);
         dialog.setMessage("Retrieving List!");
         dialog.show();
         query.findInBackground(new FindCallback<HoneyList>() {
             @Override
             public void done(java.util.List<HoneyList> list, ParseException e) {
-                listAdapter = new ListAdapter(ListActivity.this, list);
+                listAdapter = new RewardAdapter(RewardListActivity.this, list);
                 listView.setAdapter(listAdapter);
             }
         });
@@ -102,7 +87,7 @@ public class ListActivity extends ActionBarActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_list, menu);
+        getMenuInflater().inflate(R.menu.menu_reward_list, menu);
         return true;
     }
 

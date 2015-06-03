@@ -8,27 +8,40 @@
     tools:context="barazin.honeydoo.RewardActivity">
 
 
-    <Button
-        android:id="@+id/addReward"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:text="ADD"
-        android:layout_centerHorizontal="true"
-        android:gravity="center"
-        android:background="@drawable/custom_button"
-        android:textColor="@color/white"/>
+    <TextView
+        android:id="@+id/rewardNameTitle"
+        android:text="Reward Title"
+        android:textSize="30dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <EditText
+        android:id="@+id/rewardNameEdit"
+        android:hint="Insert list name"
+        android:textColor="@color/black"
+        android:layout_below="@+id/rewardNameTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
+    <TextView
+        android:id="@+id/rewardDescription"
+        android:text="Reward Description"
+        android:textSize="30dp"
+        android:layout_below="@id/rewardNameEdit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <EditText
+        android:id="@+id/rewardDescriptionEdit"
+        android:hint="Insert list name"
+        android:textColor="@color/black"
+        android:layout_below="@+id/rewardDescription"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
     <Button
-        android:id="@+id/deleteReward"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:text="DELETE"
-        android:layout_toRightOf="@+id/addReward"
-        android:layout_marginLeft="5dp"
-        android:layout_centerHorizontal="true"
-        android:gravity="center"
+        android:id="@+id/submitRewardName"
+        android:layout_below="@+id/rewardDescriptionEdit"
+        android:text="Submit"
+        android:textColor="@color/white"
         android:background="@drawable/custom_button"
-        android:textColor="@color/white"/>
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 </RelativeLayout>
