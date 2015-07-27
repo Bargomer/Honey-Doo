@@ -51,9 +51,6 @@ public class RewardActivity extends ActionBarActivity {
                 });
 
                 startActivity(intent);
-                //return the list name back to other activity
-                //
-                //startActivity(new Intent(AddList.this, ListActivity.class));
             }
         });
     }

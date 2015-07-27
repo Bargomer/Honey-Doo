@@ -29,18 +29,6 @@ public class ListActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list);
 
-
-//        ;
-//        listAdapter = new ListAdapter(
-//                ListActivity.this, lists);
-
-//        if (getIntent().getStringExtra("Title") != null)
-//        lists.add(new List(getIntent().getExtras().getString("Title")));
-//        listAdapter.notifyDataSetChanged();
-
-//
-//        listView.setAdapter(listAdapter);
-
         //add list to the listview
         Button add = (Button) findViewById(R.id.addButton);
         add.setOnClickListener(new View.OnClickListener() {
