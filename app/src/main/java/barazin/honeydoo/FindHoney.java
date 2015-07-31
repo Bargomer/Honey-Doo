@@ -1,5 +1,6 @@
 package barazin.honeydoo;
 
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
@@ -15,6 +16,7 @@ import android.widget.TextView;
 
 import com.parse.FindCallback;
 import com.parse.GetCallback;
+import com.parse.Parse;
 import com.parse.ParseACL;
 import com.parse.ParseException;
 import com.parse.ParseQuery;
@@ -46,27 +48,110 @@ public class FindHoney extends ActionBarActivity {
                 final ProgressDialog dialog = new ProgressDialog(FindHoney.this);
                 dialog.setMessage("Finding your honey!");
 
-                ParseQuery<ParseObject> query = ParseQuery.getQuery("_User");
-                query.whereEqualTo("username", keyword);
+                //Alert box definition
+                final AlertDialog.Builder dlgAlert = new AlertDialog.Builder(FindHoney.this);
+                dlgAlert.setPositiveButton("OK", null);
+                dlgAlert.setCancelable(true);
+
+                ParseQuery<ParseObject> queryUser = ParseQuery.getQuery("_User"); //Check the User Table
+                queryUser.whereEqualTo("username", keyword); //query the username column
                 dialog.show();
 
                 //find if honey exist in background
-                query.findInBackground(new FindCallback<ParseObject>()  {
+                queryUser.findInBackground(new FindCallback<ParseObject>() {
                     public void done(List<ParseObject> object, ParseException e) {
 
-                        //honey doesn't exist. infrom user
-                        if(object.size() == 0){
-                            dialog.setMessage("Your honey was not found :( !");
-                            dialog.show();
+                        //If the user inputs a user that doesn't exist, then have an alert dialog box
+                        //pop up to let them know they input an invalid user.
+                        if (object.size() == 0) {
+
+                            dlgAlert.setMessage("Your honey was not found!");
+                            dlgAlert.setTitle("Sowwy");
+                            dlgAlert.create().show();
                         }
 
-                        //no exception thrown, honey exist!
-                         else if (e == null) {
+                        //The user exist. Execute further commands.
+                        else if (e == null) {
 
-                            ParseObject temp = new ParseObject("Couple");
-                            temp.put("honey1", keyword);
-                            temp.put("honey2", ParseUser.getCurrentUser().getUsername().toString());
-                            temp.saveInBackground();
+                            //Check to see if user already has a honey
+                            ParseQuery<ParseObject> queryCouple = ParseQuery.getQuery("Couple"); //Check the Couple table
+                            queryCouple.whereEqualTo("honey2", keyword);
+                            queryCouple.findInBackground(new FindCallback<ParseObject>() {
+                                @Override
+                                public void done(List<ParseObject> list, ParseException e) {
+                                    //If user (keyword) has a honey, then inform the person that the person is taken
+
+                                    if (list.size() > 0) {
+                                        dlgAlert.setMessage(keyword + " is already taken!");
+                                        dlgAlert.setTitle("Sowwy");
+                                        dlgAlert.create().show();
+                                    }//end if
+
+                                    //The user doesn't have a honey. Now to check if the current user is a temp honey
+                                    //If they are, then it's a mutual match. If not, store searched user in current users
+                                    //Temp honey
+                                    else {
+                                        ParseQuery<ParseObject> queryTempHoney = ParseQuery.getQuery("Couple");
+                                        queryTempHoney.whereEqualTo("honey1", keyword); //check potential honey's column
+                                        queryTempHoney.whereEqualTo("tempHoney", ParseUser.getCurrentUser().getUsername().toString()); //check to see if current user is already wanted as a mate
+                                        queryTempHoney.findInBackground(new FindCallback<ParseObject>() {
+                                            @Override
+                                            public void done(List<ParseObject> list, ParseException e) {
+
+                                                //It's a mutal match! Isn't life wonderful?
+                                                if (list.size() > 0) {
+                                                    ///////////////////
+                                                    ////////////
+                                                    dlgAlert.setMessage("It's a mutual match!");
+                                                    dlgAlert.setTitle("YAY!");
+                                                    dlgAlert.create().show();
+
+                                                    ParseQuery<ParseObject> insertFirstUser = ParseQuery.getQuery("Couple");
+                                                    insertFirstUser.whereEqualTo("honey1", ParseUser.getCurrentUser().getUsername().toString());
+
+                                                    // Retrieve the object by id
+                                                    insertFirstUser.getFirstInBackground(new GetCallback<ParseObject>() {
+                                                        public void done(ParseObject firstHoney, ParseException e) {
+                                                            if (e == null) {
+
+                                                                firstHoney.put("honey1",ParseUser.getCurrentUser().getUsername().toString() );
+                                                                firstHoney.put("honey2", keyword);
+                                                                firstHoney.saveInBackground();
+                                                            }
+                                                        }
+                                                    });//end of getinBackground for first user
+
+                                                    ParseQuery<ParseObject> insertSecondUser = ParseQuery.getQuery("Couple");
+                                                    insertSecondUser.whereEqualTo("honey1", keyword);
+
+                                                    // Retrieve the object by id
+                                                    insertSecondUser.getFirstInBackground(new GetCallback<ParseObject>() {
+                                                        public void done(ParseObject secondHoney, ParseException e) {
+                                                            if (e == null) {
+
+
+                                                                secondHoney.put("honey1", keyword);
+                                                                secondHoney.put("honey2", ParseUser.getCurrentUser().getUsername().toString());
+                                                                secondHoney.saveInBackground();
+                                                            }
+                                                        }
+                                                    });
+
+                                                } //end of if, if there's a mutual match
+
+                                                //There's no mutual match. Put searched user in tempHoney position
+                                                else {
+                                                    ParseObject temp = new ParseObject("Couple");
+                                                    temp.put("honey1", ParseUser.getCurrentUser().getUsername().toString());
+                                                    temp.put("tempHoney", keyword);
+                                                    temp.saveInBackground();
+                                                }
+                                            }
+                                        });
+                                    }
+                                }
+                            });
+
                         }
                         //get rid of the dialog box
                         dialog.dismiss();
@@ -96,10 +181,5 @@ public class FindHoney extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
-    }
-
-    //search the database for the honey
-    void find(){
-
     }
 }

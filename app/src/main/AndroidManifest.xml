@@ -71,7 +71,7 @@
         <activity
             android:name=".Task"
             android:label="@string/title_activity_task"
-            android:parentActivityName=".ListActivity" >
+            android:parentActivityName=".ListActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="barazin.honeydoo.ListActivity" />
