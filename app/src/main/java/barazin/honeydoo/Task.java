@@ -75,8 +75,8 @@ public class Task extends ActionBarActivity {
 
     private void syncList() {
         ParseQuery<HoneyList> query = ParseQuery.getQuery(HoneyList.class);
-        //query.whereEqualTo("listId", getIntent().getStringExtra("id"));  //error causing query, keeping as a reference
-        query.whereNotEqualTo("listId", null);
+        query.whereEqualTo("listId", getIntent().getStringExtra("id"));  //error causing query, keeping as a reference
+        //query.whereNotEqualTo("listId", null);
         query.whereEqualTo("honey", ParseUser.getCurrentUser().getUsername().toString());
         query.whereNotEqualTo("taskId", null);
         final ProgressDialog dialog = new ProgressDialog(Task.this);

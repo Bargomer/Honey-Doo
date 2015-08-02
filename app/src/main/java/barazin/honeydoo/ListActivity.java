@@ -80,8 +80,11 @@ public class ListActivity extends ActionBarActivity {
         query.findInBackground(new FindCallback<HoneyList>() {
             @Override
             public void done(java.util.List<HoneyList> list, ParseException e) {
-                listAdapter = new ListAdapter(ListActivity.this, list);
-                listView.setAdapter(listAdapter);
+
+                if(e == null) {
+                    listAdapter = new ListAdapter(ListActivity.this, list);
+                    listView.setAdapter(listAdapter);
+                }
             }
         });
         dialog.dismiss();
